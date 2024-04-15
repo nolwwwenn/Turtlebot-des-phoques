@@ -1,11 +1,11 @@
 Voici le projet Turtlebot du groupe des phoques:
--Lett Bastien
--Boyer Paul
--Noury Amélia
--Morizur Nolwenn
+- Lett Bastien
+- Boyer Paul
+- Noury Amélia
+- Morizur Nolwenn
 
 
-Le but est de faire un interface graphique qui va permettre de controler le robot. 
+Le but est de faire une interface graphique qui va nous permettre de contrôler le robot. 
 
 Notre projet contient:
 - Le code source (fichier src)
