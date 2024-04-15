@@ -1,2 +1,15 @@
-Hello, hello 
-Comment ca va ?
+Voici le projet Turtlebot du groupe des phoques:
+-Lett Bastien
+-Boyer Paul
+-Noury Amélia
+-Morizur Nolwenn
+
+
+Le but est de faire un interface graphique qui va permettre de controler le robot. 
+
+Notre projet contient:
+- Le code source (fichier src)
+- Des tests (fichier test)
+- Les différents packages python qu’il est nécessaire d’installer pour pouvoir utiliser le projet (fichier requirement)
+- De la documentation suplémentaire (fichier doc)
+
