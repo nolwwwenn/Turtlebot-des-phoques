@@ -4,6 +4,7 @@ from tkinter.messagebox import *
 
 fenetre = Tk()
 fenetre2= Tk()
+#fenetre3=Tk()
 
 
 
@@ -40,7 +41,25 @@ rectangle = canvas.create_rectangle(0,0,25,25,fill="violet")
 ligne1 = canvas.create_line(75, 0, 75, 120)
 ligne2 = canvas.create_line(0, 60, 150, 60)
 
+#zone de texte
+value = StringVar() 
+value.set("texte par défaut")
+entree = Entry(fenetre, textvariable="string", width=30)
+entree.pack(side=TOP, padx=5, pady=50)
 
+vlin = DoubleVar()
+vang = DoubleVar()
+scale1 = Scale(fenetre,variable=vlin)
+scale2 = Scale(fenetre,variable=vang)
+monAffichage1 = Label(fenetre, text = "Vitesse linéaire", width=10)
+monAffichage1.pack(side=RIGHT, padx=5, pady=5)
+scale1.pack(side=RIGHT, padx=5, pady=20)
+
+monAffichage2 = Label(fenetre, text = "Vitesse angulaire", width=12)
+monAffichage2.pack(side=RIGHT, padx=5, pady=5)
+scale2.pack(side=RIGHT, padx=5, pady=20)
+
+#Création d'un lien entre le clavier et les déplacements d'un carré
 def clavier(event):
     global coords
 
@@ -57,6 +76,7 @@ def clavier(event):
     # changement de coordonnées pour le rectangle
     canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
 
+#Création d'un lien entre le déplacement d'un carré et les touches de déplacement
 def change1():
     global coords
 
@@ -79,7 +99,7 @@ def change4():
         coords = (coords[0] -10, coords[1])
     canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
 
-
+#Création des différents boutons de notre interface
 start=Button(fenetre, text ='START', fg='green',).pack(side=LEFT, padx=5, pady=20)
 fermer=Button(fenetre, text ='Fermer',command=callback).pack(side=RIGHT, padx=5, pady=20)
 stop=Button(fenetre, text ='STOP',fg='red')
@@ -93,14 +113,13 @@ backward.pack(side=LEFT,padx=10,pady=10)
 right=Button(fenetre, text="Right",relief=RAISED,command=change3)
 right.pack(side=LEFT, padx=5, pady=20)
 
-
+#Création de slider
 
 
 
 
 
 # création du canvas
-
 
 canvas.focus_set()
 canvas.bind("<Key>", clavier)
