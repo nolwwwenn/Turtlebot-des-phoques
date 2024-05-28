@@ -34,12 +34,11 @@ entree = Entry(fenetre, textvariable="string", width=30)
 entree.pack()"""
 canvas = Canvas(fenetre2, width=250, height=250, bg="ivory")
 # coordonnées initiales
-coords = (0, 0)
+coords = (125, 125)
 # création du rectangle
 rectangle = canvas.create_rectangle(0,0,25,25,fill="violet")
 #canvas = Canvas(deplacement, width=150, height=120, background='yellow')
-ligne1 = canvas.create_line(75, 0, 75, 120)
-ligne2 = canvas.create_line(0, 60, 150, 60)
+
 
 #zone de texte
 value = StringVar() 
