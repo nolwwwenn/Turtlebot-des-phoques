@@ -2,8 +2,40 @@ from tkinter import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+from collecte_de_donnees import *
+
+import json
+import jsonpath_ng as jp
+import numpy as np
+with open("trajectory.json", "r") as f:
+    data = json.load(f)
+
+t=0.5
+query1= jp.parse("pose.position")
+coord_x= []
+#data[1]["pose"]['position']['y']
+coord_y=[]
+vitesse_l=[]
+vitesse_a=[]
 
 
+for i in range(800):
+    coord_x.append(0)
+    coord_y.append(0)
+    coord_x[i]=data[i]["pose"]['position']['x']
+    coord_y[i]=data[i]["pose"]['position']['y']
+
+for i in range(799):
+    vitesse_l.append(0)
+    vitesse_a.append(0)
+    vitesse_l[i]= (((coord_x[i+1]-coord_x[i])/t) +((coord_y[i+1]-coord_y[i])/t))/2
+    if (coord_x[i+1]-coord_x[i])==0:
+        vitesse_a[i]=0
+    else:
+        vitesse_a[i]= np.arctan(((coord_y[i+1]-coord_y[i])/(coord_x[i+1]-coord_x[i])))/t
+vitesse_a.append(0)
+vitesse_l.append(0)
+print(vitesse_l)
 
 ##################################################### Choix des couleurs #########################################################################
 
@@ -35,6 +67,36 @@ Label_title.pack()                                                              
 Label_subtitle =Label (frame_title, text= "Nolwenn MORIZUR  |  Bastien LETT  |  Amelia NOURY  |  Paul BOYER", font=("Courrier", 9),bg=couleur_bg,fg="black")
 Label_subtitle.pack()                                                                           # ajout du sous titre
 
+################################# Création d'une nouvelle fenetre pour voir une simulation d'un déplacement à l'aide des buttons ###################
+canvas = Canvas(fenetredeplacement, width=250, height=250, bg="ivory")
+# coordonnées initiales
+coords = (125, 125)
+# création du rectangle
+rectangle = canvas.create_rectangle(0,0,25,25,fill="violet")
+
+################################# Création d'un lien entre le déplacement d'un carré et les touches de déplacement ########################
+def change1():
+    global coords
+
+    if forward_button.cget('relief') == RAISED:
+        coords = (coords[0], coords[1] - 10)
+    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
+def change2():
+    global coords
+    if backward_button.cget('relief')== RAISED:
+        coords = (coords[0], coords[1] + 10)
+    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
+def change3():
+    global coords
+    if right_button.cget('relief') == RAISED:
+        coords = (coords[0] + 10, coords[1])
+    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
+def change4():
+    global coords
+    if left_button.cget('relief') == RAISED:
+        coords = (coords[0] -10, coords[1])
+    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
+
 ############################################## Ajout dans la zone commande ##############################################################
 
 vitesse_lineaire = DoubleVar()                                                                  # création d'un slider de vitesse lineaire
@@ -59,11 +121,13 @@ right_button.place(x=120, y=80)                                                 
 
 ############################################# Ajout dans la zone mouvement##############################################################
 
-liste_vitesse_lineaire=[10,15,20,15,10,5,10,15,20,15]                                           # aquisition de la liste vitesse lineaire
-liste_vitesse_angulaire=[3,4,5,6,4,5,3,2,1,0]                                                   # aquisition de la liste de vitesse angulaire
-liste_position_x=[]                                                                             # aquisition de la liste position x
-liste_position_y=[]                                                                             # aquisition de la liste position y
-liste_temps=[1,2,3,4,5,6,7,8,9,10]                                                              # aquisition de la liste temps
+liste_vitesse_lineaire=vitesse_l                                           # aquisition de la liste vitesse lineaire
+liste_vitesse_angulaire=vitesse_a                                               # aquisition de la liste de vitesse angulaire
+liste_position_x= coord_x                                                                            # aquisition de la liste position x
+liste_position_y= coord_y     
+liste_temps=[]     
+for i in range(800):                                                                  # aquisition de la liste position y
+  liste_temps.append(0.5*i)                                                            # aquisition de la liste temps
 
 
 def create_plot(x,y):
@@ -154,35 +218,7 @@ B=(a+diam, b+diam)
 canvas.create_oval(A, B, fill='green',outline='green')
 canvas.place(x=180, y=80)
 
-################################# Création d'une nouvelle fenetre pour voir une simulation d'un déplacement à l'aide des buttons ###################
-canvas = Canvas(fenetredeplacement, width=250, height=250, bg="ivory")
-# coordonnées initiales
-coords = (125, 125)
-# création du rectangle
-rectangle = canvas.create_rectangle(0,0,25,25,fill="violet")
 
-################################# Création d'un lien entre le déplacement d'un carré et les touches de déplacement ########################
-def change1():
-    global coords
-
-    if forward.cget('relief') == RAISED:
-        coords = (coords[0], coords[1] - 10)
-    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
-def change2():
-    global coords
-    if backward.cget('relief')== RAISED:
-        coords = (coords[0], coords[1] + 10)
-    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
-def change3():
-    global coords
-    if right.cget('relief') == RAISED:
-        coords = (coords[0] + 10, coords[1])
-    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
-def change4():
-    global coords
-    if left.cget('relief') == RAISED:
-        coords = (coords[0] -10, coords[1])
-    canvas.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
 
 ############################################ Ajout sur la fenêtre principale ############################################################
 
@@ -192,6 +228,8 @@ frame_mouvement.place(x=225, y=225)                                             
 frame_connexion.place(x=350, y=70)                                                              # ajout de la zone connexion sur la fenêtre principale
 
 ########################################## Affichage de la fenêtre principale #############################################################
+
+fenetre_principale.mainloop()
 
 fenetre_principale.mainloop()
 
