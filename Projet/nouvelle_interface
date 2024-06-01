@@ -2,14 +2,15 @@ from tkinter import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from collecte_de_donnees import *
 
+################Récupération des données sous forme de dictionnaires depuis le fichier trajectory.json#################
 import json
 import jsonpath_ng as jp
 import numpy as np
 with open("trajectory.json", "r") as f:
     data = json.load(f)
 
+############################Initialisation et récupération des différents variables pour les graphiques################################
 t=0.5
 query1= jp.parse("pose.position")
 coord_x= []
