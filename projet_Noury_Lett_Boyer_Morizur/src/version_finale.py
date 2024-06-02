@@ -103,7 +103,7 @@ vitesse_angulaire = DoubleVar()                                                 
 scale_v_angulaire = Scale(frame_commande,variable=vitesse_angulaire, label="Vitesse angulaire",bg=couleur_bg)
 scale_v_angulaire.place(x=25, y=285)
 
-forward_button=Button(frame_commande,text="Forward", font=("Courrier", 10),bg=couleur_bg,fg="black",command=change(1))
+forward_button=Button(frame_commande,text="Forward", font=("Courrier", 10),bg=couleur_bg,fg="black",command=change1)
 forward_button.place(x=70, y=45)                                                                # création d'un boutton pour avancer
 
 backward_button=Button(frame_commande,text="Backward", font=("Courrier", 10),bg=couleur_bg,fg="black",command=change2)
