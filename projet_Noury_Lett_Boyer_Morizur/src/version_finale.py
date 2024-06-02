@@ -67,11 +67,31 @@ Label_subtitle =Label (frame_title, text= "Nolwenn MORIZUR  |  Bastien LETT  |  
 Label_subtitle.pack()                                                                           # ajout du sous titre
 
 ################################# Création d'une nouvelle fenetre pour voir une simulation d'un déplacement à l'aide des buttons ###################
-canvas = Canvas(fenetredeplacement, width=250, height=250, bg="ivory")
+canvas1 = Canvas(fenetredeplacement, width=250, height=250, bg="ivory")
 # coordonnées initiales
 coords = (125, 125)
 # création du rectangle
-rectangle = canvas.create_rectangle(0,0,25,25,fill="violet")
+rectangle = canvas1.create_rectangle(0,0,25,25,fill="violet")
+
+def change1():
+    global coords
+    coords = (coords[0], coords[1] - 10)
+    canvas1.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
+def change2():
+    global coords
+
+    coords = (coords[0], coords[1] + 10)
+    canvas1.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
+def change3():
+    global coords
+
+    coords = (coords[0] + 10, coords[1])
+    canvas1.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
+def change4():
+    global coords
+
+    coords = (coords[0] -10, coords[1])
+    canvas1.coords(rectangle, coords[0], coords[1], coords[0]+25, coords[1]+25)
 
 ############################################## Ajout dans la zone commande ##############################################################
 
@@ -229,5 +249,8 @@ frame_mouvement.place(x=225, y=225)                                             
 frame_connexion.place(x=350, y=70)                                                              # ajout de la zone connexion sur la fenêtre principale
 
 ########################################## Affichage de la fenêtre principale #############################################################
+canvas1.focus_set()
+
+canvas1.pack()
 
 fenetre_principale.mainloop()
