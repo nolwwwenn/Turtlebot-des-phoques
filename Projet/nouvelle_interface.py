@@ -6,7 +6,7 @@ from matplotlib.animation import FuncAnimation
 ################Récupération des données sous forme de dictionnaires depuis le fichier trajectory.json#################
 import json
 import numpy as np
-with open("trajectory.json", "r") as f:
+with open("Projet/trajectory.json", "r") as f:
     data = json.load(f)
 
 ############################Initialisation et récupération des différents variables pour les graphiques################################
