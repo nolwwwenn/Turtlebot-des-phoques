@@ -8,7 +8,7 @@ import numpy as np
 ####################### Récupération des données sous forme de dictionnaires depuis le fichier trajectory.json ########################
 import json
 import numpy as np
-with open("trajectory.json", "r") as f:
+with open("projet_Noury_Lett_Boyer_Morizur/src/trajectory.json", "r") as f:
     data = json.load(f)
 
 ############################ Initialisation et récupération des différents variables pour les graphiques ################################
