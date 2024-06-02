@@ -91,11 +91,17 @@ right_button.place(x=120, y=80)                                                 
 
 ############################################# Ajout dans la zone mouvement##############################################################
 
-liste_vitesse_lineaire=[10,15,20,15,10,5,10,15,20,15]                                           # aquisition de la liste vitesse lineaire
-liste_vitesse_angulaire=[3,4,5,6,4,5,3,2,1,0]                                                   # aquisition de la liste de vitesse angulaire
-liste_position_x=[1,2,3,4,5,9,4,3,1,8]                                                                             # aquisition de la liste position x
-liste_position_y=[9,6,3,2,5,8,7,4,1,7]                                                                             # aquisition de la liste position y
-liste_temps=[1,2,3,4,5,6,7,8,9,10]                                                              # aquisition de la liste temps
+liste_vitesse_lineaire=vitesse_l                                           # aquisition de la liste vitesse lineaire
+liste_vitesse_angulaire=vitesse_a                                               # aquisition de la liste de vitesse angulaire
+liste_position_x= coord_x                                                                            # aquisition de la liste position x
+liste_position_y= coord_y     
+liste_temps=[]     
+
+#liste_vitesse_lineaire=[10,15,20,15,10,5,10,15,20,15]                                           # aquisition de la liste vitesse lineaire
+#liste_vitesse_angulaire=[3,4,5,6,4,5,3,2,1,0]                                                   # aquisition de la liste de vitesse angulaire
+#liste_position_x=[1,2,3,4,5,9,4,3,1,8]                                                                             # aquisition de la liste position x
+#liste_position_y=[9,6,3,2,5,8,7,4,1,7]                                                                             # aquisition de la liste position y
+#liste_temps=[1,2,3,4,5,6,7,8,9,10]                                                              # aquisition de la liste temps
 
 
 
