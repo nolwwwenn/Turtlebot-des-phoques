@@ -6,13 +6,11 @@ from itertools import count
 import numpy as np
 
 import json
-import jsonpath_ng as jp
 import numpy as np
 with open("trajectory.json", "r") as f:
     data = json.load(f)
 
 t=0.5
-query1= jp.parse("pose.position")
 coord_x= []
 #data[1]["pose"]['position']['y']
 coord_y=[]
