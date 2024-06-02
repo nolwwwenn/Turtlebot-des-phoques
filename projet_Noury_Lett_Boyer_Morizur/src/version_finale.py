@@ -252,5 +252,6 @@ frame_connexion.place(x=350, y=70)                                              
 canvas1.focus_set()
 
 canvas1.pack()
+fenetre_deplacement.mainloop()
 
 fenetre_principale.mainloop()
