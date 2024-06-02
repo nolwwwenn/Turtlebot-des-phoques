@@ -36,7 +36,7 @@ for i in range(799):
         vitesse_a[i]= np.arctan(((coord_y[i+1]-coord_y[i])/(coord_x[i+1]-coord_x[i])))/t
 vitesse_a.append(0)
 vitesse_l.append(0)
-print(vitesse_l)
+
 
 ##################################################### Choix des couleurs #########################################################################
 
